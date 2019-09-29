@@ -65,6 +65,7 @@ public class ChipActivity extends AppCompatActivity {
         nextBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //String url = "https://www.aviasales.ru/search/LED0610HKT1410141";
                 Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://www.aviasales.ru")
                 );
                 startActivity(intent);
@@ -163,6 +164,16 @@ public class ChipActivity extends AppCompatActivity {
 
                             airticketTV.setText("от " + finalTicketPrice1 + "\u20BD");
                             countryTV.setText(countryName);
+
+                            nextBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    String url = "https://www.aviasales.ru/search/LED0610" + code +"1410";
+                                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url)
+                                    );
+                                    startActivity(intent);
+                                }
+                            });
                         }
                     });
                 } catch (Exception e) {

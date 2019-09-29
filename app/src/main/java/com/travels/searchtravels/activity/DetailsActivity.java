@@ -318,7 +318,15 @@ public class DetailsActivity extends AppCompatActivity {
                                 costAdapter.notifyDataSetChanged();
                                 return;
                             }
-
+                            nextBTN.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    String url = "https://www.aviasales.ru/search/LED0610" + code +"1410";
+                                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url)
+                                    );
+                                    startActivity(intent);
+                                }
+                            });
                             costAdapter = new ListAdapter(getApplicationContext(),R.layout.list_item ,data);
                             costListRV.setAdapter(costAdapter);
                             progressRL.animate().alpha(0).setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(1000).setListener(new Animator.AnimatorListener() {

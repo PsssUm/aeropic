@@ -58,10 +58,14 @@ class MainActivity : AppCompatActivity() {
 //        } else {
 //            startMain()
 //        }
-        AppPreferences.setFirstLaunch(applicationContext)
+
 
         //showLoader()
         pickImageBTN.setOnClickListener {
+            if (AppPreferences.isFirstLaunch(applicationContext)){
+                 Toast.makeText(applicationContext, "Доступ Contacts необходим для работы Google Vision API", Toast.LENGTH_LONG).show()
+             }
+            AppPreferences.setFirstLaunch(applicationContext)
             startPicking()
         }
     }
@@ -141,9 +145,9 @@ class MainActivity : AppCompatActivity() {
                 getAuthToken()
                 askedPermission = true
             } else {
-                askedPermission = false
-                startPicking()
-                Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT)
+//                askedPermission = false
+//                startPicking()
+                Toast.makeText(this, "Permission необходим для работы Google Vision API, разрешите его в настройках", Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -166,8 +170,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 getAuthToken()
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                askedPermission = false
-                startPicking()
+//                askedPermission = false
+//                startPicking()
                 Toast.makeText(this, "No Account Selected", Toast.LENGTH_SHORT)
                     .show()
             }
@@ -178,7 +182,7 @@ class MainActivity : AppCompatActivity() {
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 askedPermission = false
                 startPicking()
-                Toast.makeText(this, "Authorization Failed", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Авторизацию необходима для работы Google Vision API", Toast.LENGTH_SHORT)
                     .show()
             }
         }
